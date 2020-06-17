@@ -6,3 +6,37 @@
   color: #1C32B4;
   text-align: center;
 }
+
+.play-button-area img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80px;
+  height: 80px;
+}
+
+.arrays-area {
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /*justify-content: center;*/
+  /*align-content: center;*/
+}
+
+.arrays-area div {
+  width: 250px;
+  height: 250px;
+  background-color: black;
+}
+
+@media (max-width:1000px) {
+  .arrays-area div {
+    flex: 0 45%;
+    height: 120px;
+    width: 40%;
+    padding-bottom: 10%;
+    margin-bottom: 2%;
+  }
+}
