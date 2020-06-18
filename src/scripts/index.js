@@ -3,7 +3,7 @@
 */
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
-const size = 20;
+const size = 50;
 
 const updateItemHeight = () => {
   const divfewUniqueArrayArea = document.getElementsByClassName("few-unique-array")[0];
@@ -11,7 +11,7 @@ const updateItemHeight = () => {
   const root = document.documentElement;
   const itemHeight = Math.floor(0.5 * (height / size));
   root.style.setProperty("--item-height", `${itemHeight}px`);
-}
+};
 
 updateItemHeight();
 
@@ -45,7 +45,7 @@ const drawArray = (array, arrayClass) => {
   }
 
   return arrayItems;
-}
+};
 
 
 // create few_unique_array
@@ -75,4 +75,46 @@ for (let i = size; i > 0; i--){
 drawArray(reversedArray, "reversed-array");
 
 
-console.log(reversedArray);
+// create random arrays
+
+// http://stackoverflow.com/questions/962802#962890
+const shuffle = (arr) => {
+  const array = [...arr];
+  let tmp, current, top = array.length;
+  if(top) while(--top) {
+    current = Math.floor(Math.random() * (top + 1));
+    tmp = array[current];
+    array[current] = array[top];
+    array[top] = tmp;
+  }
+  return array;
+};
+
+const randomArray = shuffle(reversedArray);
+
+// draw random arrays
+drawArray(randomArray, "random-array");
+
+
+// create nearly sorted arrays
+const nearlySortedArray = [];
+
+for (let i = 1; i <= size ; i++){
+  nearlySortedArray.push(i);
+}
+
+// swap a little bit
+for (let i = 0; i < Math.floor(size * 0.2); i++){
+  const idx = Math.floor(Math.random() * (size - 1));
+  const temp = nearlySortedArray[idx];
+  nearlySortedArray[idx] = nearlySortedArray[idx + 1];
+  nearlySortedArray[idx + 1] = temp;
+}
+
+// draw nearly sorted arrays
+drawArray(nearlySortedArray, "nearly-sorted-array");
+
+console.log(nearlySortedArray.length);
+console.log(randomArray.length);
+console.log(fewUniqueArray.length);
+console.log(reversedArray.length);
