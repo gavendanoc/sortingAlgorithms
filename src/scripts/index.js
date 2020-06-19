@@ -3,9 +3,10 @@
 */
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
-const size = 50;
+const size = 20;
 
 const updateItemHeight = () => {
+  /* Not readable, fix later*/
   const divfewUniqueArrayArea = document.getElementsByClassName("few-unique-array")[0];
   const height = divfewUniqueArrayArea.getBoundingClientRect().height;
   const root = document.documentElement;
@@ -20,31 +21,31 @@ window.addEventListener('resize', () => {
   updateItemHeight();
 });
 
+const createBars = (arrayClass, size) => {
+  const divArray = document.getElementsByClassName(arrayClass)[0];
+  const bars = []
+
+  for (let i = 0; i < size; i++){
+    const bar = document.createElement("div");
+    bar.className += "item";
+
+    divArray.appendChild(bar);
+    bars.push(bar);
+  }
+
+  return bars;
+};
 
 
-const drawArray = (array, arrayClass) => {
-  // const divfewUniqueArrayArea = document.getElementsByClassName("few-unique-array")[0];
-  const divfewUniqueArrayArea = document.getElementsByClassName(arrayClass)[0];
-
+const drawBars = (array, bars, size) => {
   const min = Math.min(...array);
   const max = Math.max(...array);
 
-  const arrayItems = []
-
   for (let i = 0; i < size; i++){
-    const item = document.createElement("div");
     const width = map(array[i], min, max, 10, 90);
 
-    item.className += "item"
-
-    item.style.width = `${width}%`;
-    item.style.order = i;
-
-    divfewUniqueArrayArea.appendChild(item);
-    arrayItems.push(item);
+    bars[i].style.width = `${width}%`;
   }
-
-  return arrayItems;
 };
 
 
@@ -61,8 +62,8 @@ for (let i = 0; i < size; i++){
 }
 
 // draw in page
-drawArray(fewUniqueArray, "few-unique-array");
-
+fewUniqueBars = createBars("few-unique-array", size);
+drawBars(fewUniqueArray, fewUniqueBars, size);
 
 // create reversed arrays
 const reversedArray = [];
@@ -72,8 +73,8 @@ for (let i = size; i > 0; i--){
 }
 
 // draw in page
-drawArray(reversedArray, "reversed-array");
-
+reversedBars = createBars("reversed-array", size);
+drawBars(reversedArray, reversedBars, size);
 
 // create random arrays
 
@@ -93,8 +94,8 @@ const shuffle = (arr) => {
 const randomArray = shuffle(reversedArray);
 
 // draw random arrays
-drawArray(randomArray, "random-array");
-
+randomBars = createBars("random-array", size);
+drawBars(randomArray, randomBars, size);
 
 // create nearly sorted arrays
 const nearlySortedArray = [];
@@ -104,7 +105,7 @@ for (let i = 1; i <= size ; i++){
 }
 
 // swap a little bit
-for (let i = 0; i < Math.floor(size * 0.2); i++){
+for (let i = 0; i < Math.floor(size * 0.3); i++){
   const idx = Math.floor(Math.random() * (size - 1));
   const temp = nearlySortedArray[idx];
   nearlySortedArray[idx] = nearlySortedArray[idx + 1];
@@ -112,9 +113,5 @@ for (let i = 0; i < Math.floor(size * 0.2); i++){
 }
 
 // draw nearly sorted arrays
-drawArray(nearlySortedArray, "nearly-sorted-array");
-
-console.log(nearlySortedArray.length);
-console.log(randomArray.length);
-console.log(fewUniqueArray.length);
-console.log(reversedArray.length);
+nearlySortedBars = createBars("nearly-sorted-array", size);
+drawBars(nearlySortedArray, nearlySortedBars, size);
