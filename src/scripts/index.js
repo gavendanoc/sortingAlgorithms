@@ -3,7 +3,7 @@
 */
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
-const size = 20;
+const size = 40;
 
 const updateItemHeight = (size) => {
   /* Not readable, fix later*/
@@ -39,7 +39,7 @@ const createBars = (arrayClass, size) => {
 const createBlacks = (size) => {
   blacks = [];
   for (let i = 0; i < size ; i++){
-    blacks.push('#000000');
+    blacks.push('#888888');
   }
   return blacks;
 };
@@ -113,7 +113,7 @@ for (let i = 1; i <= size ; i++){
 }
 
 // swap a little bit
-for (let i = 0; i < Math.floor(size * 0.3); i++){
+for (let i = 0; i < Math.floor(size * 2); i++){
   const idx = Math.floor(Math.random() * (size - 1));
   const temp = nearlySortedArray[idx];
   nearlySortedArray[idx] = nearlySortedArray[idx + 1];
@@ -139,14 +139,29 @@ const insertionSort = (arr) => {
   for (let i = 1; i < length; i++) {
     let key = array[i];
     let j = i - 1;
-    while (j >= 0 && array[j] > key){
 
-      const colors = createBlacks(length);
-      colors[j] = '#00FF00';
-      colors[j + 1] = '#00FF00';
+    // progress
+    const colors = createBlacks(length);
+    for (let k = 0; k < i; k++){
+      colors[k] = '#3c4245';
+    }
+
+    // mark current algorithm's position
+    if (!(j >= 0 && array[j] > key)){
+      colorPosition = [...colors];
+      colorPosition[i] = '#fa163f';
       steps.push({
         array : [...array],
-        colors : colors
+        colors : colorPosition
+      });
+    }
+
+    while (j >= 0 && array[j] > key){
+      colorPosition = [...colors];
+      colorPosition[j + 1] = '#fa163f';
+      steps.push({
+        array : [...array],
+        colors : colorPosition
       });
 
       // swap
@@ -154,14 +169,21 @@ const insertionSort = (arr) => {
       array[j] = array[j + 1];
       array[j + 1] = temp;
 
-      steps.push({
-        array : [...array],
-        colors : createBlacks(length)
-      });
-
       j--;
     }
   }
+
+  let finalColors = createBlacks(length);
+  for (let k = 0; k < size; k++){
+    finalColors[k] = "#3c4245";
+  }
+
+  steps.push({
+    array : [...array],
+    colors : finalColors
+  });
+
+
   return {
     array,
     steps
@@ -197,8 +219,6 @@ function setup(){
 
 function draw() {
   let run = false;
-
-  console.log(nearlySortedItr);
 
   const nearlySortedSteps = nearlySortedSolution.steps;
   if (nearlySortedItr < nearlySortedSteps.length){
@@ -253,17 +273,16 @@ function draw() {
   }
 
   if (run){
-    drawTimeoutId = window.setTimeout(draw, 100);
+    drawTimeoutId = window.setTimeout(draw, 45); // 24 ms is a good value for 20 and 50 array
     console.log(drawTimeoutId);
   }
 }
 
-document.getElementById("play-button").addEventListener("click", function(){
+function runAlgorithm(){
   window.clearTimeout(drawTimeoutId);
   setup();
   draw();
-});
+}
 
-document.getElementById("stop-button").addEventListener("click", function(){
-  window.clearTimeout(drawTimeoutId);
-});
+document.getElementById("play-button").addEventListener("click", runAlgorithm);
+document.getElementById("play-text").addEventListener("click", runAlgorithm);
