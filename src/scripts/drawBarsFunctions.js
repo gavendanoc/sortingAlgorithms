@@ -41,3 +41,12 @@ const initializeBars = (array, arrayClass) => {
   drawBars(array, bars, array.length, getDefaultBarColorArray(array.length));
   return bars;
 }
+
+const updateBarHeight = (size) => {
+  /* Not readable, fix later*/
+  const divfewUniqueArrayArea = document.getElementsByClassName("few-unique-array")[0];
+  const height = divfewUniqueArrayArea.getBoundingClientRect().height;
+  const root = document.documentElement;
+  const barHeight = Math.floor(0.5 * (height / size));
+  root.style.setProperty("--item-height", `${barHeight}px`);
+};

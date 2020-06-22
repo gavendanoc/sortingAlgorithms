@@ -1,27 +1,12 @@
 const size = 40;
 
-const updateBarHeight = (size) => {
-  /* Not readable, fix later*/
-  const divfewUniqueArrayArea = document.getElementsByClassName("few-unique-array")[0];
-  const height = divfewUniqueArrayArea.getBoundingClientRect().height;
-  const root = document.documentElement;
-  const barHeight = Math.floor(0.5 * (height / size));
-  root.style.setProperty("--item-height", `${barHeight}px`);
-};
-
-updateBarHeight(size);
-
-
-window.addEventListener('resize', () => {
-  updateBarHeight(size);
-});
-
 
 const nearlySortedArray = makeNearlySortedArray(size);
 const randomArray = makeRandomArray(size);
 const reversedArray = makeReversedArray(size);
 const fewUniqueArray = makeFewUniqueArray(size);
 
+updateBarHeight(size);
 const nearlySortedBars = initializeBars(nearlySortedArray, "nearly-sorted-array");
 const randomBars = initializeBars(randomArray, "random-array");
 const reversedBars = initializeBars(reversedArray, "reversed-array");
@@ -29,84 +14,74 @@ const fewUniqueBars = initializeBars(fewUniqueArray, "few-unique-array");
 
 
 let nearlySortedSolution;
-let nearlySortedItr;
 let randomSolution;
-let randomItr;
 let reversedSolution;
-let reversedItr;
 let fewUniqueSolution;
-let fewUniqueItr;
+let iterations;
+
 
 let drawTimeoutId;
 
 function setup(){
   nearlySortedSolution = insertionSort(nearlySortedArray, getDefaultBarColorArray);
-  nearlySortedItr = 0;
-
   randomSolution = insertionSort(randomArray, getDefaultBarColorArray);
-  randomItr = 0;
-
   reversedSolution = insertionSort(reversedArray, getDefaultBarColorArray);
-  reversedItr = 0;
-
   fewUniqueSolution = insertionSort(shuffle(fewUniqueArray), getDefaultBarColorArray);
-  fewUniqueItr = 0;
+  iterations = 0;
 }
 
 function draw() {
   let run = false;
 
   const nearlySortedSteps = nearlySortedSolution.steps;
-  if (nearlySortedItr < nearlySortedSteps.length){
+  if (iterations < nearlySortedSteps.length){
     drawBars(
-      nearlySortedSteps[nearlySortedItr].array,
+      nearlySortedSteps[iterations].array,
       nearlySortedBars,
       size,
-      nearlySortedSteps[nearlySortedItr].colors
+      nearlySortedSteps[iterations].colors
     );
 
-    nearlySortedItr++;
     run = true;
   }
 
   const randomSteps = randomSolution.steps;
-  if (randomItr < randomSteps.length){
+  if (iterations < randomSteps.length){
     drawBars(
-      randomSteps[randomItr].array,
+      randomSteps[iterations].array,
       randomBars,
       size,
-      randomSteps[randomItr].colors
+      randomSteps[iterations].colors
     );
 
-    randomItr++;
     run = true;
   }
 
   const reversedSteps = reversedSolution.steps;
-  if (reversedItr < reversedSteps.length){
+  if (iterations < reversedSteps.length){
     drawBars(
-      reversedSteps[reversedItr].array,
+      reversedSteps[iterations].array,
       reversedBars,
       size,
-      reversedSteps[reversedItr].colors
+      reversedSteps[iterations].colors
     );
 
-    reversedItr++;
     run = true;
   }
 
   const fewUniqueSteps = fewUniqueSolution.steps;
-  if (fewUniqueItr < fewUniqueSteps.length){
+  if (iterations < fewUniqueSteps.length){
     drawBars(
-      fewUniqueSteps[fewUniqueItr].array,
+      fewUniqueSteps[iterations].array,
       fewUniqueBars,
       size,
-      fewUniqueSteps[fewUniqueItr].colors
+      fewUniqueSteps[iterations].colors
     );
 
-    fewUniqueItr++;
     run = true;
   }
+
+  iterations++;
 
   if (run){
     drawTimeoutId = window.setTimeout(draw, 45); // 24 ms is a good value for 20 and 50 array
@@ -122,3 +97,8 @@ function runAlgorithm(){
 
 document.getElementById("play-button").addEventListener("click", runAlgorithm);
 document.getElementById("play-text").addEventListener("click", runAlgorithm);
+
+
+window.addEventListener('resize', () => {
+  updateBarHeight(size);
+});
