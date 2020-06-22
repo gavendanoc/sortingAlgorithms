@@ -31,7 +31,7 @@ function setup(){
 }
 
 function draw() {
-  let run = false;
+  let runNextIteration = false;
 
   const nearlySortedSteps = nearlySortedSolution.steps;
   if (iterations < nearlySortedSteps.length){
@@ -42,7 +42,7 @@ function draw() {
       nearlySortedSteps[iterations].colors
     );
 
-    run = true;
+    runNextIteration = true;
   }
 
   const randomSteps = randomSolution.steps;
@@ -54,7 +54,7 @@ function draw() {
       randomSteps[iterations].colors
     );
 
-    run = true;
+    runNextIteration = true;
   }
 
   const reversedSteps = reversedSolution.steps;
@@ -66,7 +66,7 @@ function draw() {
       reversedSteps[iterations].colors
     );
 
-    run = true;
+    runNextIteration = true;
   }
 
   const fewUniqueSteps = fewUniqueSolution.steps;
@@ -78,12 +78,12 @@ function draw() {
       fewUniqueSteps[iterations].colors
     );
 
-    run = true;
+    runNextIteration = true;
   }
 
   iterations++;
 
-  if (run){
+  if (runNextIteration){
     drawTimeoutId = window.setTimeout(draw, 45); // 24 ms is a good value for 20 and 50 array
     console.log(drawTimeoutId);
   }

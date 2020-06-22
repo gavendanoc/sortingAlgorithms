@@ -23,11 +23,11 @@ const getDefaultBarColorArray = (size) => {
 };
 
 
-const drawBars = (array, bars, size, color) => {
+const drawBars = (array, bars, color) => {
   const min = Math.min(...array);
   const max = Math.max(...array);
 
-  for (let i = 0; i < size; i++){
+  for (let i = 0; i < array.length; i++){
     const width = map(array[i], min, max, 10, 90);
 
     bars[i].style.width = `${width}%`;
@@ -38,7 +38,7 @@ const drawBars = (array, bars, size, color) => {
 
 const initializeBars = (array, arrayClass) => {
   bars = createBars(arrayClass, array.length);
-  drawBars(array, bars, array.length, getDefaultBarColorArray(array.length));
+  drawBars(array, bars, getDefaultBarColorArray(array.length));
   return bars;
 }
 
