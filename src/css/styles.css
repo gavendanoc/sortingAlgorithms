@@ -1,3 +1,4 @@
+/* Following guide in https://stackoverflow.com/questions/7256065/specifying-style-and-weight-for-google-fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
 
 * {
@@ -7,17 +8,14 @@
 
 body {
   margin: 0px;
-  font-family: 'segoe ui';
 }
 
-
+/* Easy for bar height manipulation in javascript*/
 :root {
   --item-height: 2px;
 }
 
-.nav div {
-  font-weight: bold;
-}
+
 
 .algorithm-title {
   margin-top: 30px;
@@ -26,9 +24,25 @@ body {
 .algorithm-title h1{
   color: #1C32B4;
   text-align: center;
-  font-weight: 400;
-  font-size: 3em;
+  font-weight: 100;
+  font-size: 5em;
 }
+
+.sorting-algorithm-hint-subtitle{
+  color: #1C32B4
+}
+
+.sorting-algorithm-hint {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+#play-button-hint {
+  width: 18px;
+  height: 18px;
+}
+
+
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -38,7 +52,6 @@ body {
   padding-top: 30px;
   width: 80%;
   margin: 0 auto;
-  /*padding-top: 20px;*/
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -46,9 +59,7 @@ body {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-
 .play-button-area {
-  /*margin-top: 3%;*/
   margin-bottom: 3%;
 }
 
@@ -83,22 +94,16 @@ body {
   justify-content: space-evenly;
   flex-direction: row;
   flex-wrap: wrap;
-  /*justify-content: center;*/
-  /*align-content: center;*/
-}
-
-.arrays-area > div {
-
-  /*background-color: black;*/
 }
 
 .array-title p {
   text-align: center;
   font-size: large;
   margin-bottom: 10px;
-  font-weight: 600; /* https://stackoverflow.com/questions/7256065/specifying-style-and-weight-for-google-fonts */
+  font-weight: 600;
 }
 
+/* Area of the array values */
 .bars {
   width: 200px;
   height: 250px;
@@ -109,21 +114,63 @@ body {
   flex-direction: column;
 }
 
+/* individual bar item */
 .item {
   height: var(--item-height);
   margin-left: 4px;
 }
 
-.item-1 { width: 40%; order:1}
-.item-2 { width: 50%; order:2}
-.item-3 { width: 60%; order:3}
-.item-4 { width: 20%; order:4}
-.item-5 { width: 30%; order:5}
 
+
+.description {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  max-width: 1000px;
+  width: 80%;
+  margin: 40px auto;
+}
+
+.description-item {
+  width: 45%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+}
+
+.description-item h3 {
+  color: #1C32B4;
+}
+
+.description-item p {
+  font-weight: 400;
+  text-align: justify;
+}
+
+.description-item ul {
+  list-style: none;
+  font-weight: 400;
+  padding-inline-start: 20px
+}
+
+#description-discussion {
+  width: 100%;
+}
+
+/* Changing the style of a list requires setting default values again */
+.description-item  ul li::before {
+  content: "\2022";
+  color: #1C32B4;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+
+/* Makes 2x2 array distribution on tablet mode and bellow*/
 @media (max-width:1050px) {
   .arrays-area > div {
     flex: 0 45%;
-    /*padding-bottom: 10%;*/
     margin-bottom: 40px;
   }
 
@@ -140,8 +187,17 @@ body {
   }
 }
 
+
 @media (max-width:700px) {
   .algorithm-title h1{
     font-size: 2.3em;
+  }
+
+  .array-title p {
+    font-size: medium; /* Solves title overflowing */
+  }
+
+  .description-item {
+    width: 100%;
   }
 }
