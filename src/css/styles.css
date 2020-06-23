@@ -152,6 +152,48 @@ body {
   padding-inline-start: 20px
 }
 
+#description-sizes {
+  display: flex;
+  height: 45px;
+}
+
+.size-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  background-color: #064acb;
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.selected-size-button {
+  background-color: #6c5ce7;
+}
+
+.size-button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  width: 45px;
+  height: 45px;
+}
+
+.size-button p {
+  margin: 0;
+  text-align: center;
+  color: white;
+  font-weight: 900;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 #description-discussion {
   width: 100%;
 }

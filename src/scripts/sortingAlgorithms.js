@@ -46,7 +46,7 @@ const insertionSort = (arr, getDefaultBarColorArray) => {
   }
 
   let finalColors = getDefaultBarColorArray(length);
-  for (let k = 0; k < size; k++){
+  for (let k = 0; k < length; k++){
     finalColors[k] = "#3c4245";
   }
 

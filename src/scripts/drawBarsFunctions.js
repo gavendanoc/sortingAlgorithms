@@ -13,6 +13,17 @@ const createBars = (arrayClass, size) => {
   return bars;
 };
 
+const removeBars = (arrayClass) => {
+  const divArray = document.getElementsByClassName(arrayClass)[0];
+  divArray.innerHTML = '';
+};
+
+const removeAllBars = () => {
+  removeBars("nearly-sorted-array-canvas");
+  removeBars("random-array-canvas");
+  removeBars("reversed-array-canvas");
+  removeBars("few-unique-array-canvas");
+};
 
 const getDefaultBarColorArray = (size) => {
   blacks = [];
@@ -44,7 +55,7 @@ const initializeBars = (array, arrayClass) => {
 
 const updateBarHeight = (size) => {
   /* Not readable, fix later*/
-  const divfewUniqueArrayArea = document.getElementsByClassName("few-unique-array")[0];
+  const divfewUniqueArrayArea = document.getElementsByClassName("bars")[0];
   const height = divfewUniqueArrayArea.getBoundingClientRect().height;
   const root = document.documentElement;
   const barHeight = Math.floor(0.5 * (height / size));

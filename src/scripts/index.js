@@ -1,24 +1,35 @@
-const size = 40;
+let SIZE = 40;
 
 
-const nearlySortedArray = makeNearlySortedArray(size);
-const randomArray = makeRandomArray(size);
-const reversedArray = makeReversedArray(size);
-const fewUniqueArray = makeFewUniqueArray(size);
+let nearlySortedArray;
+let randomArray;
+let reversedArray;
+let fewUniqueArray;
+let nearlySortedBars;
+let randomBars;
+let reversedBars;
+let fewUniqueBars;
 
-updateBarHeight(size);
-const nearlySortedBars = initializeBars(nearlySortedArray, "nearly-sorted-array");
-const randomBars = initializeBars(randomArray, "random-array");
-const reversedBars = initializeBars(reversedArray, "reversed-array");
-const fewUniqueBars = initializeBars(fewUniqueArray, "few-unique-array");
+function initialize (size){
+  nearlySortedArray = makeNearlySortedArray(size);
+  randomArray = makeRandomArray(size);
+  reversedArray = makeReversedArray(size);
+  fewUniqueArray = makeFewUniqueArray(size);
 
+  updateBarHeight(size);
+  nearlySortedBars = initializeBars(nearlySortedArray, "nearly-sorted-array-canvas");
+  randomBars = initializeBars(randomArray, "random-array-canvas");
+  reversedBars = initializeBars(reversedArray, "reversed-array-canvas");
+  fewUniqueBars = initializeBars(fewUniqueArray, "few-unique-array-canvas");
+}
+
+initialize(SIZE);
 
 let nearlySortedSolution;
 let randomSolution;
 let reversedSolution;
 let fewUniqueSolution;
 let iterations;
-
 
 let drawTimeoutId;
 
@@ -38,7 +49,6 @@ function draw() {
     drawBars(
       nearlySortedSteps[iterations].array,
       nearlySortedBars,
-      size,
       nearlySortedSteps[iterations].colors
     );
 
@@ -50,7 +60,6 @@ function draw() {
     drawBars(
       randomSteps[iterations].array,
       randomBars,
-      size,
       randomSteps[iterations].colors
     );
 
@@ -62,7 +71,6 @@ function draw() {
     drawBars(
       reversedSteps[iterations].array,
       reversedBars,
-      size,
       reversedSteps[iterations].colors
     );
 
@@ -74,7 +82,6 @@ function draw() {
     drawBars(
       fewUniqueSteps[iterations].array,
       fewUniqueBars,
-      size,
       fewUniqueSteps[iterations].colors
     );
 
@@ -100,5 +107,54 @@ document.getElementById("play-text").addEventListener("click", runAlgorithm);
 
 
 window.addEventListener('resize', () => {
-  updateBarHeight(size);
+  updateBarHeight(SIZE);
+});
+
+
+document.getElementById("size-button-20").addEventListener("click", function () {
+  window.clearTimeout(drawTimeoutId);
+  SIZE = 20;
+  removeAllBars();
+  initialize(SIZE);
+
+  document.getElementById("size-button-30").classList.remove("selected-size-button");
+  document.getElementById("size-button-40").classList.remove("selected-size-button");
+  document.getElementById("size-button-50").classList.remove("selected-size-button");
+  this.classList.add("selected-size-button");
+});
+
+document.getElementById("size-button-30").addEventListener("click", function () {
+  window.clearTimeout(drawTimeoutId);
+  SIZE = 30;
+  removeAllBars();
+  initialize(SIZE);
+
+  document.getElementById("size-button-20").classList.remove("selected-size-button");
+  document.getElementById("size-button-40").classList.remove("selected-size-button");
+  document.getElementById("size-button-50").classList.remove("selected-size-button");
+  this.classList.add("selected-size-button");
+});
+
+document.getElementById("size-button-40").addEventListener("click", function () {
+  window.clearTimeout(drawTimeoutId);
+  SIZE = 40;
+  removeAllBars();
+  initialize(SIZE);
+
+  document.getElementById("size-button-20").classList.remove("selected-size-button");
+  document.getElementById("size-button-30").classList.remove("selected-size-button");
+  document.getElementById("size-button-50").classList.remove("selected-size-button");
+  this.classList.add("selected-size-button");
+});
+
+document.getElementById("size-button-50").addEventListener("click", function () {
+  window.clearTimeout(drawTimeoutId);
+  SIZE = 50;
+  removeAllBars();
+  initialize(SIZE);
+
+  document.getElementById("size-button-20").classList.remove("selected-size-button");
+  document.getElementById("size-button-30").classList.remove("selected-size-button");
+  document.getElementById("size-button-40").classList.remove("selected-size-button");
+  this.classList.add("selected-size-button");
 });
