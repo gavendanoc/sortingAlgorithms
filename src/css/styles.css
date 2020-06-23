@@ -163,7 +163,6 @@ body {
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  background-color: #064acb;
   border-radius: 25px;
   width: 40px;
   height: 40px;
@@ -171,7 +170,8 @@ body {
 }
 
 .selected-size-button {
-  background-color: #6c5ce7;
+  background-color: #153586;
+  color: white;
 }
 
 .size-button:hover {
@@ -180,10 +180,35 @@ body {
   height: 45px;
 }
 
-.size-button p {
+#description-speeds {
+  display: flex;
+}
+
+.speed-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 80px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.speed-button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.selected-speed-button {
+  background-color: #153586;
+  color: white;
+}
+
+.size-button p,
+.speed-button p {
   margin: 0;
   text-align: center;
-  color: white;
   font-weight: 900;
 
   -webkit-touch-callout: none;
@@ -193,6 +218,7 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+
 
 #description-discussion {
   width: 100%;

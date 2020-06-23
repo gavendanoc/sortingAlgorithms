@@ -1,5 +1,12 @@
 let SIZE = 20;
 
+const speeds = {
+  slow: 150,
+  medium: 45,
+  fast: 15
+};
+
+let currentSpeed = speeds.medium;
 
 let nearlySortedArray;
 let randomArray;
@@ -91,8 +98,7 @@ function draw() {
   iterations++;
 
   if (runNextIteration){
-    drawTimeoutId = window.setTimeout(draw, 45); // 24 ms is a good value for 20 and 50 array
-    console.log(drawTimeoutId);
+    drawTimeoutId = window.setTimeout(draw, currentSpeed); // 24 ms is a good value for 20 and 50 array
   }
 }
 
@@ -157,4 +163,30 @@ document.getElementById("size-button-50").addEventListener("click", function () 
   document.getElementById("size-button-30").classList.remove("selected-size-button");
   document.getElementById("size-button-40").classList.remove("selected-size-button");
   this.classList.add("selected-size-button");
+});
+
+
+document.getElementById("speed-button-slow").addEventListener("click", function () {
+  currentSpeed = speeds.slow;
+
+  this.classList.add("selected-speed-button");
+  document.getElementById("speed-button-medium").classList.remove("selected-speed-button");
+  document.getElementById("speed-button-fast").classList.remove("selected-speed-button");
+});
+
+document.getElementById("speed-button-medium").addEventListener("click", function () {
+  currentSpeed = speeds.medium;
+
+  this.classList.add("selected-speed-button");
+  document.getElementById("speed-button-slow").classList.remove("selected-speed-button");
+  document.getElementById("speed-button-fast").classList.remove("selected-speed-button");
+
+});
+
+document.getElementById("speed-button-fast").addEventListener("click", function () {
+  currentSpeed = speeds.fast;
+
+  this.classList.add("selected-speed-button");
+  document.getElementById("speed-button-slow").classList.remove("selected-speed-button");
+  document.getElementById("speed-button-medium").classList.remove("selected-speed-button");
 });
