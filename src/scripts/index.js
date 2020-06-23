@@ -1,4 +1,4 @@
-let SIZE = 40;
+let SIZE = 20;
 
 
 let nearlySortedArray;

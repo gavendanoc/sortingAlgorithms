@@ -1,6 +1,6 @@
 // create few_unique_array
 const makeFewUniqueArray = (size) => {
-  const uniqueValues = 4;
+  const uniqueValues = 5;
   const fewUniqueArray = [];
   let initialValue = 0;
 
