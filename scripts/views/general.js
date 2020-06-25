@@ -21,7 +21,7 @@ function initialize (size){
   arrays.push(makeNearlySortedArray(size));
   arrays.push(makeRandomArray(size));
   arrays.push(makeReversedArray(size));
-  arrays.push(makeFewUniqueArray(size));
+  arrays.push(shuffle(makeFewUniqueArray(size)));
 
   updateBarHeight(size);
 
