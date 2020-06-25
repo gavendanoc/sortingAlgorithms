@@ -41,10 +41,10 @@ let iterations;
 let drawTimeoutId;
 
 function setup(){
-  nearlySortedSolution = insertionSort(nearlySortedArray, getDefaultBarColorArray);
-  randomSolution = insertionSort(randomArray, getDefaultBarColorArray);
-  reversedSolution = insertionSort(reversedArray, getDefaultBarColorArray);
-  fewUniqueSolution = insertionSort(shuffle(fewUniqueArray), getDefaultBarColorArray);
+  nearlySortedSolution = bubbleSort(nearlySortedArray, getDefaultBarColorArray);
+  randomSolution = bubbleSort(randomArray, getDefaultBarColorArray);
+  reversedSolution = bubbleSort(reversedArray, getDefaultBarColorArray);
+  fewUniqueSolution = bubbleSort(shuffle(fewUniqueArray), getDefaultBarColorArray);
   iterations = 0;
 }
 
