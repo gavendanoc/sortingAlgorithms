@@ -34,9 +34,9 @@ const getDefaultBarColorArray = (size) => {
 };
 
 
-const drawBars = (array, bars, color) => {
-  const min = Math.min(...array);
-  const max = Math.max(...array);
+const drawBars = (array, bars, color, min, max) => {
+  if (max === undefined) max = Math.max(...array);
+  if (min === undefined) min = Math.min(...array);
 
   for (let i = 0; i < array.length; i++){
     const width = map(array[i], min, max, 10, 90);
