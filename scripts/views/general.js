@@ -37,10 +37,15 @@ const next = (iteration, solution, bars) => {
   const steps = solution.steps;
   if (iterations >= steps.length) return false;
 
+  const min = Math.min(...solution.array);
+  const max = Math.max(...solution.array);
+
   drawBars(
     steps[iteration].array,
     bars,
-    steps[iteration].colors
+    steps[iteration].colors,
+    min,
+    max
   );
   return true;
 };
