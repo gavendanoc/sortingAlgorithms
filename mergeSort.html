@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="sorting algorithm visualizations">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Gabriel A.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" href="./images/logo.png">
+    <title>Merge Sort</title>
+    <!--- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> --->
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="./images/logo.png" alt="Logo" class="logo-image">
+        <h2 class="logo-name">Sorting Algorithms</h2>
+      </div>
+      <div class="nav">
+        <ul class="nav-links hide">
+          <li><a href="./insertionSort.html">Insertion Sort</a></li>
+          <li><a href="./bubbleSort.html">Bubble Sort</a></li>
+          <li><a href="./mergeSort.html">Merge Sort</a></li>
+          <li><a href="./heapSort.html">Heap Sort</a></li>
+          <li><a href="./shellSort.html">Shell Sort</a></li>
+        </ul>
+      </div>
+      <span class="navbar-toggle" id="js-navbar-toggle">
+         <i class="fa fa-bars"></i>
+      </span>
+    </header>
+
+    <section>
+      <div class="algorithm-title">
+        <h1> Merge sort </h1>
+      </div>
+
+      <div class="sorting-algorithm-hint">
+        <p>
+          <span class="sorting-algorithm-hint-subtitle"><strong>Hint:</strong></span>
+          Press the
+          <img src="./images/play-button-light.png" alt="Play button hint" id="play-button-hint">
+           icon
+        </p>
+      </div>
+    </section>
+
+    <div class='card'>
+      <div class="play-button-area">
+        <img class="pointer" src="./images/play-button-light.png" alt="Play button" id="play-button">
+        <p id="play-text" class="pointer"><strong>Play all</strong></p>
+      </div>
+
+      <div class="arrays-area">
+        <div>
+          <div class="array-title">
+            <p> Nearly sorted</p>
+          </div>
+          <div class="bars nearly-sorted-array-canvas"></div>
+        </div>
+        <div>
+          <div class="array-title">
+            <p> Random </p>
+          </div>
+          <div class="bars random-array-canvas"></div>
+        </div>
+        <div>
+          <div class="array-title">
+            <p> Reversed </p>
+          </div>
+          <div class="bars reversed-array-canvas"></div>
+        </div>
+        <div >
+          <div class="array-title">
+            <p> Few unique</p>
+          </div>
+          <div class="bars few-unique-array-canvas"></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="description">
+      <div class="description-item">
+        <h3>Array Size</h3>
+        <div id="description-sizes">
+          <div class="size-button pointer selected-size-button" id="size-button-20">
+            <p>20</p>
+          </div>
+          <div class="size-button pointer" id="size-button-30">
+            <p>30</p>
+          </div>
+          <div class="size-button pointer" id="size-button-40">
+            <p>40</p>
+          </div>
+          <div class="size-button pointer" id="size-button-50">
+            <p>50</p>
+          </div>
+        </div>
+      </div>
+      <div class="description-item">
+        <h3>Algorithm's speed</h3>
+        <p>Change the algorithm's speed to see the process with more detail.</p>
+        <div id="description-speeds">
+          <div class="speed-button pointer" id="speed-button-slow" >
+            <p>slow</p>
+          </div>
+          <div class="speed-button pointer selected-speed-button" id="speed-button-medium">
+            <p>medium</p>
+          </div>
+          <div class="speed-button pointer" id="speed-button-fast">
+            <p>fast</p>
+          </div>
+        </div>
+      </div>
+      <div class="description-item">
+        <h3>Key</h3>
+        <ul>
+          <li>Grey represents an <strong>unordered</strong> value.</li>
+          <li>Black represents an <strong>ordered</strong> value.</li>
+          <li>Red marks the algorithm's position.</li>
+        </ul>
+      </div>
+      <div class="description-item">
+        <h3>Properties</h3>
+        <ul>
+          <li>O(n) space complexity</li>
+          <li>O(n<sup>2</sup>) <i>worst case</i> time complexity</li>
+          <li>O(n) <i>best case</i> time complexity</li>
+        </ul>
+      </div>
+      <div class="description-item" id="description-discussion">
+        <h3>Discussion</h3>
+        <p>llamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>llamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </section>
+
+    <script src="https://use.fontawesome.com/b721ed01dc.js" async></script>
+    <script src="./scripts/navbar.js"></script>
+    <script src="./scripts/generalFunctions.js"></script>
+    <script src="./scripts/drawBarsFunctions.js"></script>
+    <script src="./scripts/initializeArrays.js"></script>
+    <script src="./scripts/sortingAlgorithms.js"></script>
+    <script src="./scripts/views/mergeSort.js"></script>
+    <script src="./scripts/views/general.js"></script>
+  </body>
+</html>

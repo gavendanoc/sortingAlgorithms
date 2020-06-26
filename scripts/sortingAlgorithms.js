@@ -124,3 +124,54 @@ const bubbleSort = (arr, getDefaultBarColorArray) => {
     steps
   };
 };
+
+const merge = (arr, left, middle, right, getDefaultBarColorArray, steps, colors) => {
+  const leftArr = arr.slice(left, middle);
+  const rightArr = arr.slice(middle, right);
+
+  let l = leftArr.length - 1;
+  let r = rightArr.length - 1;
+
+  for (let k = right - 1; k >= left; k--){
+    if (r < 0 || leftArr[l] > rightArr[r]){
+      arr[k] = leftArr[l--];
+    } else {
+      arr[k] = rightArr[r--];
+    }
+
+    colors[k] = redMarker;
+    steps.push({
+      array: [...arr],
+      colors: [...colors]
+    });
+    colors[k] = blackMarker;
+  }
+};
+
+const mergeSortHelper = (arr, start, end, getDefaultBarColorArray, steps, colors) => {
+  if (start >= end - 1) return;
+
+  const middle = Math.floor((start + end) / 2);
+  mergeSortHelper(arr, start, middle, getDefaultBarColorArray, steps, colors);
+  mergeSortHelper(arr, middle, end, getDefaultBarColorArray, steps, colors);
+  merge(arr, start, middle, end, getDefaultBarColorArray, steps, colors);
+};
+
+const mergeSort = (arr, getDefaultBarColorArray) => {
+  const array = [...arr];
+  const steps = [];
+  const colors = [...getDefaultBarColorArray(arr.length)];
+
+  mergeSortHelper(array, 0, array.length, getDefaultBarColorArray, steps, colors);
+
+  colors[0] = blackMarker;
+  steps.push({
+    array : [...array],
+    colors : [...colors]
+  });
+
+  return {
+    array,
+    steps
+  }
+};
